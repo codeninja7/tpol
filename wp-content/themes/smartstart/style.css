@@ -698,6 +698,8 @@ html {
 		text-transform: uppercase;
 	}
 
+        h6.section-title { color: #970101;}
+
 	/* -------------------------------------------------- */
 	/*	Main
 	/* -------------------------------------------------- */
@@ -1724,28 +1726,31 @@ html {
 			.projects-carousel img, #portfolio-items article img {
 				background-color: #fff;
 				margin: 0 auto -5px;
-				filter: alpha(opacity=70); /* Fallback for old IE */
-				opacity: 0.7;
+				/*filter: alpha(opacity=70); *//* Fallback for old IE */
+				/*opacity: 0.7;*/
 			}
 
 			.no-js .projects-carousel img, .no-js #portfolio-items article img { margin-bottom: 0; }
 
-			.projects-carousel img { margin: -25px auto 20px; }
+			.projects-carousel img { margin: -25px auto 15px; }
 
 			.projects-carousel .title, #portfolio-items > article .title {
+                color: #970101;
 				font-weight: 400;
 				margin-bottom: 0;
 			}
 
 			.projects-carousel > li .categories, #portfolio-items > article .categories {
-				color: #aeaeae;
+				color: #9b9b9b;
 				display: block;
+                font-family:"Helvetica Neue", Arial, Helvetica, sans-serif;
 				font-style: italic;
-				margin: -1px 0 20px;
+                line-height: 15px;
+				margin: 4px 0 15px;
 			}
 
 			.projects-carousel a:hover, #portfolio-items > article:hover {
-				background: #f8f8f8;
+				background: url('/wp-content/themes/smartstart/images/000-05.png') 0 0 repeat scroll transparent;
 				border-bottom: 1px solid #f15a23;
 			}
 
@@ -1776,7 +1781,8 @@ html {
 	/* -------------------------------------------------- */
 	/*	Post Carousel
 	/* -------------------------------------------------- */
-		
+    .post-carousel > li {margin-bottom:15px;}
+
 	.post-carousel .entry-meta {
 		float: left;
 		font-style: italic;
@@ -1796,19 +1802,24 @@ html {
 
 		.post-carousel li .date {
 			display: block;
-			margin: 8px 0 0;
+			margin: 0 0 0;
 		}
 					
 		.post-carousel .entry-body .title {
+            color:#970101;
 			font-size: 14px;
-			font-weight: 400;
-			margin: 0 0 10px 0;
+			font-weight: 600;
+            font-style: normal;
+			margin: 1px 0 6px 0;
 		}
 	
 	.post-carousel .entry-body {
 		float: right;
 		margin: 0;
 		width: 175px;
+        font-size:12px;
+        font-style:italic;
+        line-height:15px;
 	}
 
 	.post-carousel .entry-image, .post-carousel .entry-video, .post-carousel .entry-audio, .post-carousel .fluid-width-video-wrapper {
@@ -2019,7 +2030,10 @@ html {
                     font-family: "Open Sans", "Helvetica", arial, sans-serif;
                     font-size:26px;
                     font-weight:800;
+                    text-transform:uppercase;
+                    text-align:center;
 				}
+                    .entry-meta a time span{font-size:14px;display:block;padding-bottom:2px;}
 
 					.entry-meta a:hover, .entry-meta a:hover time { color: #f15a23; }
 			

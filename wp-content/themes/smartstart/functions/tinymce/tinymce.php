@@ -75,7 +75,7 @@ require_once( $path_to_wp.'/wp-load.php' );
 						</optgroup>
 						<optgroup label="- <?php _e('Template Tags', 'ss_framework'); ?> -">
 							<option value="post-carousel"><?php _e('Post Carousel', 'ss_framework'); ?></option>
-							<option value="projects-carousel"><?php _e('Projects Carousel', 'ss_framework'); ?></option>
+							<option value="projects-carousel"><?php _e('Events Carousel', 'ss_framework'); ?></option>
 							<option value="portfolio"><?php _e('Portfolio', 'ss_framework'); ?></option>
 							<option value="slider"><?php _e('Slider', 'ss_framework'); ?></option>
 							<option value="team-member"><?php _e('Team Member', 'ss_framework'); ?></option>
@@ -1122,7 +1122,7 @@ require_once( $path_to_wp.'/wp-load.php' );
 				<td class="field">
 				
 					<input type="text" name="projects-carousel-title" id="projects-carousel-title" value="" class="widefat">
-					<em><?php _e('(Default: Latest projects)', 'ss_framework'); ?></em>
+					<em><?php _e('(Default: Upcoming events)', 'ss_framework'); ?></em>
 
 				</td>
 

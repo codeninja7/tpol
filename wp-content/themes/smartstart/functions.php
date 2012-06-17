@@ -514,3 +514,12 @@ function ss_additional_image_size_input_fields( $fields, $post ) {
     return $fields;
 }
 add_filter( 'attachment_fields_to_edit', 'ss_additional_image_size_input_fields', 11, 2 );
+
+function ss_remove_menus(){
+    remove_menu_page( 'link-manager.php' );
+    remove_menu_page( 'edit-comments.php' );
+    remove_menu_page( 'edit.php?post_type=portfolio' );
+    remove_menu_page( 'edit.php?post_type=team' );
+    remove_menu_page( 'plugins.php' );
+}
+add_action( 'admin_menu', 'ss_remove_menus');

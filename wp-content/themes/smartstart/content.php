@@ -19,7 +19,7 @@ $thumbnail_size = isset( $GLOBALS['post-carousel'] ) ? 'blog-post-thumb' : 'blog
 		<h1 class="title"><?php the_title(); ?></h1>
 	</a>
 
-	<?php echo ss_framework_post_content(); ?>
+	<?php echo wp_html_excerpt(ss_framework_post_content(),65); ?>
 
 </div><!-- end .entry-body -->
 

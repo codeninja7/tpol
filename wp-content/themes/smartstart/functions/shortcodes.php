@@ -700,7 +700,7 @@ add_shortcode('audio', 'ss_framework_audio_sc');
 	function ss_framework_projects_carousel_sc( $atts ) {
 
 		$atts = extract( shortcode_atts( array(
-			'title'      => __('Latest projects', 'ss_framework'),
+			'title'      => __('Upcoming Events', 'ss_framework'),
 			'limit'      => 8,
 			'categories' => '',
 			'auto'       => 0
@@ -708,7 +708,7 @@ add_shortcode('audio', 'ss_framework_audio_sc');
 
 		global $post;
 
-		$args = array('post_type'      => 'portfolio',
+		$args = array('post_type'      => 'tribe_events',
 					  'posts_per_page' => esc_attr( $limit ),
 					  'order'          => 'DESC',
 					  'orderby'        => 'date',
@@ -757,9 +757,9 @@ add_shortcode('audio', 'ss_framework_audio_sc');
 
 				if( $portfolio_categories )
 					foreach ( $portfolio_categories as $project_category ) {
-						
+
 						$data_categories .= $project_category->slug . ' ';
-						
+
 						$category_names .= $project_category->slug . ' / ';
 
 					}
@@ -773,7 +773,8 @@ add_shortcode('audio', 'ss_framework_audio_sc');
 
 						$output .= '<h5 class="title">' . get_the_title( $post->ID ) . '</h5>';
 
-						$output .= '<span class="categories">' . substr( trim( $category_names ), 0, -2 ) . '</span>';
+//						$output .= '<span class="categories">' . substr( trim( $category_names ), 0, -2 ) . '</span>';
+                        $output .= '<span class="categories">' . wp_html_excerpt(ss_framework_post_content(),65) . '</span>';
 
 					$output .= '</a>';
 
