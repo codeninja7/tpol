@@ -1,5 +1,5 @@
 <?
-$test = '5';
+$test = '6';
 $post = json_decode($_POST);
 $repo = $post['repository'];
 $repo_name = $repo['name'];
