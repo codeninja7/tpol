@@ -89,11 +89,12 @@ if( !function_exists('ss_framework_posted_on')) {
 
 	function ss_framework_posted_on() {
 
-		return sprintf( __( '<a href="%1$s" title="%2$s" rel="bookmark"><time datetime="%3$s" pubdate>%4$s</time></a>', 'ss_framework' ),
+		return sprintf( __( '<a href="%1$s" title="%2$s" rel="bookmark"><time datetime="%3$s" pubdate><span class="month">%4$s</span>%5$s</time></a>', 'ss_framework' ),
 			esc_url( get_permalink() ),
 			esc_attr( get_the_time() ),
 			esc_attr( get_the_date('c') ),
-			esc_html( get_the_date('M d Y') )
+			esc_html( get_the_date('M') ),
+            esc_html( get_the_date('d') )
 		);
 
 	}
