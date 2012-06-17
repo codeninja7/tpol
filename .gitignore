@@ -14,3 +14,10 @@ sitemap.xml
 sitemap.xml.gz
 readme.html
 license.txt
+400.shtml
+401.shtml
+403.shtml
+404.shtml
+500.php
+500.shtml
+default.html
