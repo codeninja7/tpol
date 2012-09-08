@@ -16,13 +16,7 @@ if ( !defined('ABSPATH') ) { die('-1'); }
 ?>	
 <?php get_header(); ?>
 <?php tribe_events_before_html() ?>
-<!-- h2 class="tribe-events-cal-title"><?php tribe_events_title(); ?></h2 -->
-<header class="page-header">
-    <h1 class="page-title align-left"><?php tribe_events_title(); ?></h1>
-    <a href="/events" class="button no-bg medium align-right">
-        All Events <img src="/wp-content/themes/smartstart/images/icon-grid.png" alt="" class="icon">
-    </a>
-</header>
+<h2 class="tribe-events-cal-title"><?php tribe_events_title(); ?></h2>
 <?php include(tribe_get_current_template()); ?>
 <?php tribe_events_after_html() ?>
 <?php get_footer(); ?>
