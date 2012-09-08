@@ -647,11 +647,12 @@ add_shortcode('audio', 'ss_framework_audio_sc');
 			'title'      => __('Latest stuff from our blog', 'ss_framework'),
 			'limit'      => 8,
 			'categories' => '',
-			'auto'       => 0
+			'auto'       => 0,
+            'post_types'  => 'post',
 		), $atts ) );
 
 		$args = array('posts_per_page' => esc_attr( $limit ),
-					  'post_type'      => 'post'
+					  'post_type'      => explode(',', $post_types),
 				  );
 
 		if( $categories ) 

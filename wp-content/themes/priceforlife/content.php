@@ -4,7 +4,7 @@ $thumbnail_size = isset( $GLOBALS['post-carousel'] ) ? 'blog-post-thumb' : 'blog
 
 <?php if( has_post_thumbnail() ): ?>
 
-	<?php $post_thumbnail_img = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), $thumbnail_size ); ?>
+	<?php $post_thumbnail_img = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), apply_filters('ss_content_thumbnail_size', $thumbnail_size, $post) ); ?>
 	<?php $post_thumbnail_data = ss_framework_get_the_post_thumbnail_data( $post->ID ); ?>
 
 	<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
@@ -14,10 +14,11 @@ $thumbnail_size = isset( $GLOBALS['post-carousel'] ) ? 'blog-post-thumb' : 'blog
 <?php endif; ?>
 
 <div class="entry-body">
-
+    <?php if( !is_single() ): ?>
 	<a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__('Permalink to %s', 'ss_framework'), the_title_attribute('echo=0') ); ?>" rel="bookmark">
 		<h1 class="title"><?php the_title(); ?></h1>
 	</a>
+    <?php endif; ?>
 
 	<?php echo ss_framework_post_content(); ?>
 

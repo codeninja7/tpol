@@ -28,7 +28,7 @@ $attachments = get_posts( $att_args );
 		<?php foreach( $attachments as $attachment ): ?>
 		
 			<?php $permalink = isset( $GLOBALS['post-carousel'] ) ? get_permalink() : $attachment->guid; ?>
-			<?php $attachment_img = wp_get_attachment_image_src( $attachment->ID, $attachment_size, false ); ?>
+			<?php $attachment_img = wp_get_attachment_image_src( $attachment->ID, apply_filters('ss_content_thumbnail_size', $attachment_size, $post), false ); ?>
 
 			<li>
 				<a href="<?php echo $permalink; ?>" title="<?php echo $attachment->post_title; ?>" <?php echo $lightbox; ?> <?php echo $lightbox_group; ?>>
@@ -46,9 +46,11 @@ $attachments = get_posts( $att_args );
 
 <div class="entry-body">
 
+    <?php if( !is_single() ): ?>
 	<a href="<?php the_permalink(); ?>" title="<?php printf(esc_attr__('Permalink to %s', 'ss_framework'), the_title_attribute('echo=0')); ?>" rel="bookmark">
 		<h1 class="title"><?php the_title(); ?></h1>
 	</a>
+    <?php endif; ?>
 
 <?php echo ss_framework_post_content(); ?>
 

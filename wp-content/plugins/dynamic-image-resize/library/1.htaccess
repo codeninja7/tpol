@@ -1,0 +1,13 @@
+#AUTORESIZER#
+
+# Handle /wp-content/blogs.dir/ requests
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{QUERY_STRING} ^[whzcqafsu]
+RewriteRule ^wp-content/blogs\.dir/\d+/files/(.+(\.(?i)(jpg|jpeg|png|gif|bmp))$) wp-content/plugins/dynamic-image-resize/library/dynamic-image-resize-endpoint.php?src=files/$1 [L,QSA]
+
+# Handle all other image requests
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{QUERY_STRING} ^[whzcqafsu]
+RewriteRule ([^\s]+(\.(?i)(jpg|jpeg|png|gif|bmp))$) wp-content/plugins/dynamic-image-resize/library/dynamic-image-resize-endpoint.php?src=$1 [L,QSA]
+
+#ENDAUTORESIZER#

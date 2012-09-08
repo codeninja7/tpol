@@ -236,8 +236,8 @@ if( !function_exists('ss_framework_post_meta')) {
 				if( of_get_option('ss_post_tags') == '1' && get_the_tags() )
 					$output .= '<li><span class="title">' . __('Tags:', 'ss_framework') . '</span> ' . get_the_tag_list('', ', ', '') . '</li>';
 
-				if ( of_get_option('ss_post_comments') == '1' && ( comments_open() || ( '0' != get_comments_number() && !comments_open() ) ) )
-					$output .= '<li><span class="title">' . __('Comments:', 'ss_framework') . '</span> <a title="Comment on ' . get_the_title() . '" href="' . get_comments_link() . '">' . get_comments_number() . '</a></li>';
+//				if ( of_get_option('ss_post_comments') == '1' && ( comments_open() || ( '0' != get_comments_number() && !comments_open() ) ) )
+//					$output .= '<li><span class="title">' . __('Comments:', 'ss_framework') . '</span> <a title="Comment on ' . get_the_title() . '" href="' . get_comments_link() . '">' . get_comments_number() . '</a></li>';
 
 				if ( of_get_option('ss_post_author') == '1' )
 					$output .= '<li><span class="title">' . __('Author:', 'ss_framework') . '</span> <span class="author vcard"><a class="url fn n" href="' . get_author_posts_url( get_the_author_meta( 'ID' ) ) . '" title="' . sprintf( __( 'View all posts by %s', 'ss_framework' ), get_the_author() ) . '" rel="author">' . get_the_author() . '</a></span></li>';

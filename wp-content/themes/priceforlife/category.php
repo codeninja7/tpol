@@ -10,7 +10,7 @@
 
 			<?php if ( have_posts() ): ?>
 			
-					<h1 class="page-title"><?php printf( __( 'Category Archives: %s', 'ss_framework' ), '<span>' . single_cat_title( '', false ) . '</span>' ); ?></h1>
+					<h1 class="page-title"><?php printf( __( 'Category: %s', 'ss_framework' ), '<span>' . single_cat_title( '', false ) . '</span>' ); ?></h1>
 
 			<?php else: ?>
 			

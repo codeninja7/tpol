@@ -1108,6 +1108,34 @@ require_once( $path_to_wp.'/wp-load.php' );
 				</td>
 
 			</tr>
+
+            <tr class="option post-carousel">
+
+                <th class="label">
+
+                    <label for="post-carousel-post_types"><?php _e('Post Types', 'ss_framework'); ?></label>
+
+                </th>
+
+                <td class="field">
+
+                    <select name="post-carousel-post_types" id="post-carousel-post_types" class="widefat" size="5" multiple>
+
+                        <option value="post" selected><?php _e('post', 'ss_framework'); ?></option>
+
+                        <?php $post_types = get_post_types(array('public' => true, '_builtin' => false), 'names', 'and'); foreach( $post_types as $post_type ): ?>
+
+                        <option value="<?php echo $post_type; ?>"><?php echo $post_type; ?></option>
+
+                        <?php endforeach; ?>
+
+                    </select>
+
+                    <em><?php _e('(Default is \'post\'.  Use this feature only if applicable.)', 'ss_framework'); ?></em>
+
+                </td>
+
+            </tr>
 			<!-- end post-carousel -->
 
 			<!-- start projects-carousel -->

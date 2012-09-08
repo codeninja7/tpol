@@ -37,9 +37,11 @@
 
 <div class="entry-body">
 
+    <?php if( !is_single() ): ?>
 	<a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__('Permalink to %s', 'ss_framework'), the_title_attribute('echo=0') ); ?>" rel="bookmark">
 		<h1 class="title"><?php the_title(); ?></h1>
 	</a>
+    <?php endif; ?>
 
 	<?php echo ss_framework_post_content(); ?>
 

@@ -276,7 +276,7 @@
 		} else if( $currentShortcode === 'post-carousel' ) {
 
 			ss_framework_show_option('.post-carousel');
-			shortcode = '[post_carousel title="" limit="" categories="" auto=""]';
+			shortcode = '[post_carousel title="" limit="" categories="" post_types="" auto=""]';
 
 		/* -------------------------------------------------- */
 		/*	Project Carousel
@@ -722,7 +722,8 @@
 			var postCarouselTitle      = $('#post-carousel-title').val(),
 				postCarouselLimit      = parseInt( $('#post-carousel-limit').val() ),
 				postCarouselAuto       = parseInt( $('#post-carousel-auto').val() ),
-				postCarouselCategories = $('#post-carousel-categories').val();
+				postCarouselCategories = $('#post-carousel-categories').val(),
+                postCarouselPostTypes  = $('#post-carousel-post_types').val();
 
 			shortcode = '[post_carousel';
 
@@ -737,6 +738,9 @@
 
 			if(postCarouselCategories[0] !== '')
 				shortcode += ' categories="' + postCarouselCategories + '"';
+
+            if(postCarouselPostTypes[0] !== '')
+                shortcode += ' post_types="' + postCarouselPostTypes + '"';
 
 			shortcode += ']';
 
