@@ -313,6 +313,8 @@ a, a > * {
 
 /* All Mobile Sizes (devices and browser) */
 @media only screen and (max-width: 767px) {
+    #header { border-color:#CCC; }
+    #main-nav a { border-bottom-color:#CCC; }
     /* -------------------------------------------------- */
     /*	Wrap
      /* -------------------------------------------------- */
