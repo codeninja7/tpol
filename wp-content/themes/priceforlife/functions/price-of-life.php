@@ -3,10 +3,11 @@
 /* ---------------------------------------------------------------------- */
 /*	Enqueue Price of Life Custom CSS
 /* ---------------------------------------------------------------------- */
-add_action('wp_enqueue_scripts', function(){
+add_action('wp_enqueue_scripts', 'pol_wp_enqueue_scripts');
+function pol_wp_enqueue_scripts(){
     wp_register_style('priceoflife', SS_BASE_URL . 'css/priceoflife.css', array('ss-theme-styles'), false );
     wp_enqueue_style('priceoflife');
-});
+}
 
 /* ---------------------------------------------------------------------- */
 /*	Add Image Sizes
@@ -20,7 +21,8 @@ add_image_size( 'aspect_ratio_3:2_medium', 680, 453, true );
 add_image_size( 'single_page_feature_image', 680, 0, true );
 add_image_size( 'main_slider_size_large', 568, 380, true );
 add_image_size( 'post_carousel', 220, 140, true );
-add_filter( 'attachment_fields_to_edit', function( $fields, $post ) {
+add_filter( 'attachment_fields_to_edit', 'pol_attachment_fields_to_edit', 11, 2 );
+function pol_attachment_fields_to_edit($fields, $post){
     global $_wp_additional_image_sizes;
     if ( (!isset($_wp_additional_image_sizes) || !count($_wp_additional_image_sizes)) || !isset($fields['image-size']['html']) || substr($post->post_mime_type, 0, 5) != 'image' )
         return $fields;
@@ -43,21 +45,23 @@ add_filter( 'attachment_fields_to_edit', function( $fields, $post ) {
     }
     $fields['image-size']['html'] = "{$new_image_sizes}";
     return $fields;
-}, 11, 2 );
-add_filter( 'ss_content_thumbnail_size', function($thumbnail_size, $post){
+};
+add_filter( 'ss_content_thumbnail_size', 'pol_ss_content_thumbnail_size', 10, 2);
+function pol_ss_content_thumbnail_size($thumbnail_size, $post){
     if(is_single())
         return 'single_page_feature_image';
     elseif(isset( $GLOBALS['post-carousel'] ))
         return 'post_carousel';
     else
         return 'aspect_ratio_5:2_medium';
-}, 10, 2);
-add_filter('ss_framework_posted_on_date', function($date){
+}
+add_filter('ss_framework_posted_on_date', 'pol_ss_framework_posted_on_date', 10, 2);
+function pol_ss_framework_posted_on_date($date){
     if(isset( $GLOBALS['post-carousel'] ))
         return '<span class="month">'.esc_html(get_the_date('M')).'</span>'.esc_html(get_the_date('d'));
     else
         return $date;
-}, 10, 2);
+}
 
 /* ---------------------------------------------------------------------- */
 /*	Disable automatic formatting
