@@ -17,7 +17,9 @@ add_image_size( 'aspect_ratio_3:2_large', 940, 626, true );
 add_image_size( 'aspect_ratio_5:2_medium', 680, 272, true );
 add_image_size( 'aspect_ratio_16:9_medium', 680, 382, true );
 add_image_size( 'aspect_ratio_3:2_medium', 680, 453, true );
+add_image_size( 'single_page_feature_image', 680, 0, true );
 add_image_size( 'main_slider_size_large', 568, 380, true );
+add_image_size( 'post_carousel', 220, 140, true );
 add_filter( 'attachment_fields_to_edit', function( $fields, $post ) {
     global $_wp_additional_image_sizes;
     if ( (!isset($_wp_additional_image_sizes) || !count($_wp_additional_image_sizes)) || !isset($fields['image-size']['html']) || substr($post->post_mime_type, 0, 5) != 'image' )
@@ -44,9 +46,17 @@ add_filter( 'attachment_fields_to_edit', function( $fields, $post ) {
 }, 11, 2 );
 add_filter( 'ss_content_thumbnail_size', function($thumbnail_size, $post){
     if(is_single())
-        return 'aspect_ratio_16:9_medium';
+        return 'single_page_feature_image';
+    elseif(isset( $GLOBALS['post-carousel'] ))
+        return 'post_carousel';
     else
         return 'aspect_ratio_5:2_medium';
+}, 10, 2);
+add_filter('ss_framework_posted_on_date', function($date){
+    if(isset( $GLOBALS['post-carousel'] ))
+        return '<span class="month">'.esc_html(get_the_date('M')).'</span>'.esc_html(get_the_date('d'));
+    else
+        return $date;
 }, 10, 2);
 
 /* ---------------------------------------------------------------------- */

@@ -104,6 +104,76 @@ a, a > * {
     font-size:11px;
 }
 
+    /* ---------------------------------------------------------------------- */
+    /*	Content > Post Carousel
+    /* ---------------------------------------------------------------------- */
+    body.home h6.section-title {
+        color:#970101;
+        font-family:"Open Sans", "Helvetica Neue", Arial, sans-serif;
+        font-size:14px;
+        font-weight:800;
+        line-height:14px;
+        margin-bottom:0;
+        padding-bottom:0;
+    }
+    .jcarousel-container { margin-bottom:82px; border-color:#8A8A8A; }
+    .jcarousel-clip .post-carousel { height:215px; border-bottom:1px solid #8A8A8A; overflow:visible !important; }
+    .post-carousel .entry-body {
+        color:#9A9A9A;
+        font-style:italic;
+        line-height:15px;
+        width:181px;
+        max-height:53px;
+        margin-top:-3px;
+        overflow:hidden;
+    }
+    .post-carousel .entry-body .title {
+        color:#970101;
+        font-style:normal;
+        text-overflow:ellipsis;
+        white-space:nowrap;
+        overflow:hidden;
+        margin-bottom:5px;
+    }
+    .post-carousel .entry-video { height:140px; overflow:hidden; }
+    .post-carousel .entry-meta { margin:0; }
+    .post-carousel .entry-meta > a { display:none; }
+    .post-carousel .entry-meta .date { color:#8A8A8A; margin:-1px 0 0 0; }
+    .post-carousel .entry-meta a time {
+        font-family:"Open Sans", "Helvetica Neue", Arial, sans-serif;
+        font-size:25px;
+        font-weight:800;
+        font-style:normal;
+        text-transform:uppercase;
+        color:#848483;
+        line-height:25px;
+    }
+    .post-carousel .entry-meta a time .month {
+        font-size:14px;
+        line-height:14px;
+        padding-bottom:7px;
+        display:block;
+    }
+    .post-carousel > li, .projects-carousel > li {
+        position:relative;
+        padding-bottom:10px;
+        border-bottom:1px solid transparent;
+        z-index:2;
+        transition: border-color .2s ease-in-out, background .2s ease-in-out, transform .2s ease-in-out;
+        -moz-transition: border-color .2s ease-in-out, background .2s ease-in-out, -moz-transform .2s ease-in-out;
+        -webkit-transition: border-color .2s ease-in-out, background .2s ease-in-out, -webkit-transform .2s ease-in-out;
+        -o-transition: border-color .2s ease-in-out, background .2s ease-in-out, -o-transform .2s ease-in-out;
+    }
+    .post-carousel > li:hover, .projects-carousel > li:hover {
+        border-color:#970101;
+        background: transparent;
+        background: rgba(0, 0, 0, 0.1);;
+        -ms-filter:'progid:DXImageTransform.Microsoft.gradient(startColorstr=#19000000,endColorstr=#19000000)';
+        filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#19000000,endColorstr=#19000000);
+    }
+
+
+
 /* ---------------------------------------------------------------------- */
 /*	Footer
 /* ---------------------------------------------------------------------- */
@@ -191,8 +261,9 @@ a, a > * {
         text-transform:uppercase;
         text-shadow:none;
         width:310px;
-        height:350px;
+        height:310px;
         padding:37px 0 0 32px;
+        overflow:hidden;
     }
     .ss-slider .content-container .slide-content .button {
         color:#970101;
@@ -297,3 +368,9 @@ a, a > * {
     font-weight:700;
     width:222px;
 }
+
+
+/* -------------------------------------------------- */
+/*	Events
+/* -------------------------------------------------- */
+#tribe-events-content {padding:0;}

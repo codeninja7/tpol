@@ -93,7 +93,7 @@ if( !function_exists('ss_framework_posted_on')) {
 			esc_url( get_permalink() ),
 			esc_attr( get_the_time() ),
 			esc_attr( get_the_date('c') ),
-			esc_html( get_the_date('M d Y') )
+            apply_filters( 'ss_framework_posted_on_date', esc_html(get_the_date('M d Y')) )
 		);
 
 	}
