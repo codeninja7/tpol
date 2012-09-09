@@ -118,6 +118,8 @@ a, a > * {
     }
     .jcarousel-container { margin-bottom:82px; border-color:#8A8A8A; }
     .jcarousel-clip .post-carousel { height:215px; border-bottom:1px solid #8A8A8A; overflow:visible !important; }
+    .jcarousel-next, .jcarousel-prev { background-color:#CCC; }
+    .jcarousel-next-disabled, .jcarousel-next-disabled:hover, .jcarousel-next-disabled:focus, .jcarousel-next-disabled:active, .jcarousel-prev-disabled, .jcarousel-prev-disabled:hover, .jcarousel-prev-disabled:focus, .jcarousel-prev-disabled:active { background-color:#DDD !important; }
     .post-carousel .entry-body {
         color:#9A9A9A;
         font-style:italic;
