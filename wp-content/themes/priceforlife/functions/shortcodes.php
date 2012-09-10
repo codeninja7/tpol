@@ -667,7 +667,7 @@ add_shortcode('audio', 'ss_framework_audio_sc');
 			if( !empty( $title ) )
 				$output .= '<h6 class="section-title">' . esc_attr( $title ) . '</h6>';
 
-			$output .= '<ul class="post-carousel clearfix" data-auto="' . esc_attr( $auto ) . '">';
+			$output .= '<ul class="post-carousel ' . preg_replace('/,/', ' ', $post_types) . ' clearfix" data-auto="' . esc_attr( $auto ) . '">';
 
 			$GLOBALS['post-carousel'] = true;
 

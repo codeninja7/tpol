@@ -158,13 +158,13 @@ a, a > * {
     }
     .post-carousel > li, .projects-carousel > li {
         position:relative;
-        padding-bottom:10px;
+        height:100%;
         border-bottom:1px solid transparent;
         z-index:2;
-        transition: border-color .2s ease-in-out, background .2s ease-in-out, transform .2s ease-in-out;
-        -moz-transition: border-color .2s ease-in-out, background .2s ease-in-out, -moz-transform .2s ease-in-out;
         -webkit-transition: border-color .2s ease-in-out, background .2s ease-in-out, -webkit-transform .2s ease-in-out;
-        -o-transition: border-color .2s ease-in-out, background .2s ease-in-out, -o-transform .2s ease-in-out;
+           -moz-transition: border-color .2s ease-in-out, background .2s ease-in-out, -moz-transform .2s ease-in-out;
+             -o-transition: border-color .2s ease-in-out, background .2s ease-in-out, -o-transform .2s ease-in-out;
+                transition: border-color .2s ease-in-out, background .2s ease-in-out, transform .2s ease-in-out;
     }
     .post-carousel > li:hover, .projects-carousel > li:hover {
         border-color:#970101;
@@ -173,6 +173,8 @@ a, a > * {
         -ms-filter:'progid:DXImageTransform.Microsoft.gradient(startColorstr=#19000000,endColorstr=#19000000)';
         filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#19000000,endColorstr=#19000000);
     }
+    .post-carousel.tribe_events .entry-body { text-align:center; width:100%; }
+    .post-carousel.tribe_events .entry-meta { display:none; }
 
 
 
@@ -205,6 +207,10 @@ a, a > * {
     background:none;
     margin-left:4px;
     padding:0;
+}
+.contact-info .phone:before,
+.contact-info .email:before {
+    content: '| ';
 }
 
 /* ---------------------------------------------------------------------- */
@@ -291,7 +297,15 @@ a, a > * {
 
 /* Smaller than standard 960 (devices and browsers) */
 @media only screen and (max-width: 959px) {
+    .contact-info .phone,
+    .contact-info .email {
+        margin-left:0;
+    }
     #main-nav a { padding:26px 5px; }
+    .contact-info .phone:before,
+    .contact-info .email:before {
+        content: '';
+    }
     /* -------------------------------------------------- */
     /*	Home > Slider*/
      /* -------------------------------------------------- */
