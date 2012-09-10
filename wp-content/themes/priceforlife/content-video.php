@@ -1,39 +1,54 @@
-<div class="entry-video">
+<?php
+$thumbnail_size = isset( $GLOBALS['post-carousel'] ) ? 'blog-post-thumb' : 'blog-post';
+?>
 
-	<?php
+<?php if( has_post_thumbnail() && !is_single() ): ?>
 
-	if( ss_framework_get_custom_field( 'ss_video_mp4', $post->ID ) || ss_framework_get_custom_field( 'ss_video_webm', $post->ID ) || ss_framework_get_custom_field( 'ss_video_ogg', $post->ID ) ) {
+<?php $post_thumbnail_img = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), apply_filters('ss_content_thumbnail_size', $thumbnail_size, $post) ); ?>
+<?php $post_thumbnail_data = ss_framework_get_the_post_thumbnail_data( $post->ID ); ?>
 
-		$shortcode = '[video';
+    <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
+        <img src="<?php echo $post_thumbnail_img[0]; ?>" alt="<?php echo $post_thumbnail_data['alt']; ?>" title="<?php echo $post_thumbnail_data['title']; ?>" class="entry-image <?php echo $post_thumbnail_data['class']; ?>">
+    </a>
 
-			if( ss_framework_get_custom_field( 'ss_video_mp4', $post->ID ) && !isset( $GLOBALS['post-carousel'] ) )
-				$shortcode .= ' mp4="' . ss_framework_get_custom_field( 'ss_video_mp4', $post->ID ) . '"';
+<?php else: ?>
+    <div class="entry-video">
 
-			if( ss_framework_get_custom_field( 'ss_video_webm', $post->ID ) )
-				$shortcode .= ' webm="' . ss_framework_get_custom_field( 'ss_video_webm', $post->ID ) . '"';
+        <?php
 
-			if( ss_framework_get_custom_field( 'ss_video_ogg', $post->ID ) )
-				$shortcode .= ' ogg="' . ss_framework_get_custom_field( 'ss_video_ogg', $post->ID ) . '"';
+        if( ss_framework_get_custom_field( 'ss_video_mp4', $post->ID ) || ss_framework_get_custom_field( 'ss_video_webm', $post->ID ) || ss_framework_get_custom_field( 'ss_video_ogg', $post->ID ) ) {
 
-			if( ss_framework_get_custom_field( 'ss_video_preview', $post->ID ) )
-				$shortcode .= ' poster="' . ss_framework_get_custom_field( 'ss_video_preview', $post->ID ) . '"';
+            $shortcode = '[video';
 
-			if( ss_framework_get_custom_field( 'ss_video_aspect_ratio', $post->ID ) )
-				$shortcode .= ' aspect_ratio="' . ss_framework_get_custom_field( 'ss_video_aspect_ratio', $post->ID ) . '"';
+                if( ss_framework_get_custom_field( 'ss_video_mp4', $post->ID ) && !isset( $GLOBALS['post-carousel'] ) )
+                    $shortcode .= ' mp4="' . ss_framework_get_custom_field( 'ss_video_mp4', $post->ID ) . '"';
 
-		$shortcode .= ']';
+                if( ss_framework_get_custom_field( 'ss_video_webm', $post->ID ) )
+                    $shortcode .= ' webm="' . ss_framework_get_custom_field( 'ss_video_webm', $post->ID ) . '"';
 
-		echo do_shortcode( $shortcode );
+                if( ss_framework_get_custom_field( 'ss_video_ogg', $post->ID ) )
+                    $shortcode .= ' ogg="' . ss_framework_get_custom_field( 'ss_video_ogg', $post->ID ) . '"';
 
-	} elseif( ss_framework_get_custom_field( 'ss_video_external', $post->ID ) ) {
+                if( ss_framework_get_custom_field( 'ss_video_preview', $post->ID ) )
+                    $shortcode .= ' poster="' . ss_framework_get_custom_field( 'ss_video_preview', $post->ID ) . '"';
 
-		echo do_shortcode( ss_framework_get_custom_field( 'ss_video_external', $post->ID ) );
+                if( ss_framework_get_custom_field( 'ss_video_aspect_ratio', $post->ID ) )
+                    $shortcode .= ' aspect_ratio="' . ss_framework_get_custom_field( 'ss_video_aspect_ratio', $post->ID ) . '"';
 
-	}
+            $shortcode .= ']';
 
-	?>
-	
-</div><!-- end .entry-video -->
+            echo do_shortcode( $shortcode );
+
+        } elseif( ss_framework_get_custom_field( 'ss_video_external', $post->ID ) ) {
+
+            echo do_shortcode( ss_framework_get_custom_field( 'ss_video_external', $post->ID ) );
+
+        }
+
+        ?>
+
+    </div><!-- end .entry-video -->
+<?php endif; ?>
 
 <div class="entry-body">
 
