@@ -179,6 +179,7 @@ a, a > * {
 #content a {color:#970101;}
 .page-subdescription {
     font-size:16px;
+    line-height:normal;
     margin-top:-50px;
     padding-bottom:15px;
 }
