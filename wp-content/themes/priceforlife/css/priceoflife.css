@@ -183,8 +183,15 @@ a, a > * {
     margin-top:-50px;
     padding-bottom:15px;
 }
+#sidebar #mc_signup .mc_interests_header,
+#sidebar #mc_signup .mc_interest,
+#sidebar #mc_signup .mergeRow {display:none;}
 
-/* ---------------------------------------------------------------------- */
+
+
+
+
+    /* ---------------------------------------------------------------------- */
 /*	Footer
 /* ---------------------------------------------------------------------- */
 .not-ie #footer:before {
