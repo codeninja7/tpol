@@ -93,6 +93,7 @@ a, a > * {
     font-style:italic;
     font-size:12px;
 }
+.ss-slider .slide-content .button {display:block;}
 .page-header {
     border-color:#8a8a8a;
 }
