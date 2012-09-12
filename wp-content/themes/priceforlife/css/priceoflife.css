@@ -176,7 +176,7 @@ a, a > * {
     .post-carousel.tribe_events .entry-body { text-align:center; width:100%; }
     .post-carousel.tribe_events .entry-meta { display:none; }
 
-
+#content a {color:#970101;}
 
 /* ---------------------------------------------------------------------- */
 /*	Footer
