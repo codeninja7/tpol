@@ -2,8 +2,8 @@
 Contributors: mc_jesse, crowdfavorite
 Tags: mailchimp, email, newsletter, signup, marketing, plugin, widget
 Requires at least: 2.8
-Tested up to: 3.4.1
-Stable tag: 1.2.10
+Tested up to: 3.4.2
+Stable tag: 1.2.13
 
 == Description ==
 
@@ -124,6 +124,9 @@ Maybe! Look in the /po/ directory in our plugin package and see if your language
 
 == Upgrade Notice ==
 
+= 1.2.11 =
+Merged pull request from https://github.com/headshift/wp-mailchimp adding additional translation strings.
+
 = 1.2.10 =
 Fixed submission error when apostrophes are present
 
@@ -137,9 +140,16 @@ Fixes major bug with "Settings" link on Plugins screen.
 Added support for multiple interest groups, field formatting based on type and date picker.
 
 == Changelog ==
+
+= 1.2.13 =
+* Fixed bug preventing address fields from submitting correctly.
+
+= 1.2.12 =
+* Update spanish language files (es_ES and es_MX)
+
 = 1.2.9 =
 * Fixed bug where multiple checkbox type interest groups were returning an invalid error
-* Fixed but where assets were not enqueueing properly if the plugin directory was not set to 'mailchimp'. Now supports any directory name.
+* Fixed bug where assets were not enqueueing properly if the plugin directory was not set to 'mailchimp'. Now supports any directory name.
 
 = 1.2.8 = 
 * Fixed bug where entire phone numbers were only being deposited in the area code portion

@@ -1,0 +1,24 @@
+[09-Sep-2012 03:39:30] PHP Parse error:  syntax error, unexpected T_FUNCTION in /home1/etsueico/public_html/git/tpol/wp-content/themes/priceforlife/functions/price-of-life.php on line 6
+[09-Sep-2012 03:39:38] PHP Parse error:  syntax error, unexpected T_FUNCTION in /home1/etsueico/public_html/git/tpol/wp-content/themes/priceforlife/functions/price-of-life.php on line 6
+[08-Sep-2012 22:02:53] PHP Warning:  PHP Startup: Unable to load dynamic library '/usr/php/53/usr/lib64/php/modules/http.so' - /usr/php/53/usr/lib64/php/modules/http.so: undefined symbol: zend_ini_string_ex in Unknown on line 0
+[08-Sep-2012 22:02:53] PHP Warning:  PHP Startup: Unable to load dynamic library '/usr/php/53/usr/lib64/php/modules/imagick.so' - /usr/php/53/usr/lib64/php/modules/imagick.so: undefined symbol: zend_replace_error_handling in Unknown on line 0
+[08-Sep-2012 22:02:54] PHP Warning:  PHP Startup: magickwand: Unable to initialize module
+Module compiled with module API=20090626, debug=0, thread-safety=0
+PHP    compiled with module API=20060613, debug=0, thread-safety=0
+These options need to match
+ in Unknown on line 0
+[08-Sep-2012 22:02:54] PHP Warning:  PHP Startup: mailparse: Unable to initialize module
+Module compiled with module API=20090626, debug=0, thread-safety=0
+PHP    compiled with module API=20060613, debug=0, thread-safety=0
+These options need to match
+ in Unknown on line 0
+[08-Sep-2012 22:02:54] PHP Warning:  PHP Startup: Unable to load dynamic library '/usr/php/53/usr/lib64/php/modules/oauth.so' - /usr/php/53/usr/lib64/php/modules/oauth.so: undefined symbol: gc_remove_zval_from_buffer in Unknown on line 0
+[09-Sep-2012 04:02:58] PHP Parse error:  syntax error, unexpected T_FUNCTION in /home1/etsueico/public_html/git/tpol/wp-content/themes/priceforlife/functions/price-of-life.php on line 6
+[09-Sep-2012 04:06:12] PHP Parse error:  syntax error, unexpected T_FUNCTION in /home1/etsueico/public_html/git/tpol/wp-content/themes/priceforlife/functions/price-of-life.php on line 6
+[09-Sep-2012 04:12:31] PHP Parse error:  syntax error, unexpected T_FUNCTION in /home1/etsueico/public_html/git/tpol/wp-content/themes/priceforlife/functions/price-of-life.php on line 6
+[09-Sep-2012 14:06:10] PHP Parse error:  syntax error, unexpected T_FUNCTION in /home1/etsueico/public_html/git/tpol/wp-content/themes/priceforlife/functions/price-of-life.php on line 6
+[09-Sep-2012 14:09:06] PHP Parse error:  syntax error, unexpected T_FUNCTION in /home1/etsueico/public_html/git/tpol/wp-content/themes/priceforlife/functions/price-of-life.php on line 6
+[12-Sep-2012 14:12:45] PHP Warning:  in_array(): Wrong datatype for second argument in /home1/etsueico/public_html/git/tpol/wp-content/themes/priceforlife/functions.php on line 470
+[10-Mar-2013 01:58:07] WordPress database error You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 for query SELECT * FROM wp_wpgmappity_markers WHERE map_id =  made by do_action('media_upload_gmappity'), call_user_func_array, wpgmappity_iframe, wpgmappity_fetch_markers_for_map
+[13-Mar-2013 07:01:27] WordPress database error You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 for query SELECT * FROM wp_wpgmappity_markers WHERE map_id =  made by do_action('media_upload_gmappity'), call_user_func_array, wpgmappity_iframe, wpgmappity_fetch_markers_for_map
+[19-Mar-2013 16:08:44] PHP Warning:  parse_url(http://?#): Unable to parse URL in /home1/etsueico/public_html/git/tpol/wp-includes/class-http.php on line 119
