@@ -636,7 +636,7 @@ if ( !class_exists( 'TribeEvents' ) ) {
 			if(get_query_var('eventDisplay') == 'upcoming'){
 				$new_title = apply_filters( 'tribe_upcoming_events_title', __("Upcoming Events", 'tribe-events-calendar'). ' '.$sep . ' ' . $title, $sep );
 			}elseif(get_query_var('eventDisplay') == 'past'){
-					$new_title = apply_filters( 'tribe_past_events_title', __("Past Events", 'tribe-events-calendar') . ' '. $sep . ' ' . $title, $sep );
+				$new_title = apply_filters( 'tribe_past_events_title', __("Past Events", 'tribe-events-calendar') . ' '. $sep . ' ' . $title, $sep );
 
 			}elseif(get_query_var('eventDisplay') == 'month'){
 				if(get_query_var('eventDate')){

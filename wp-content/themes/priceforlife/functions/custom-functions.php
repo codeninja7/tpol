@@ -811,7 +811,7 @@ if ( !function_exists('ss_framework_twitter_feed') ) {
 		if ( $tweets === false  ) {
 
 			// Fetch the RSS feed from Twitter
-			$rss_feed = wp_remote_get("http://twitter.com/statuses/user_timeline/$username.rss");
+			$rss_feed = wp_remote_get("https://api.twitter.com/1/statuses/user_timeline.xml?include_entities=true&include_rts=true&screen_name=$username&count=$tweet_count&exclude_replies=$ignore_replies");
 
 			// Parse the RSS feed to an XML object
 			$rss_feed = @simplexml_load_string( $rss_feed['body'] );
@@ -819,21 +819,18 @@ if ( !function_exists('ss_framework_twitter_feed') ) {
 			if( !is_wp_error( $rss_feed ) && isset( $rss_feed ) ) {
 
 				// Error check: Make sure there is at least one item
-				if( count( $rss_feed->channel->item ) ) {
+				if( count( $rss_feed->status ) ) {
 
 					// Open the twitter wrapping element
 					$tweets = '<ul class="tweets-feed">';
-					 
+
 					$tweets_count = 0;
 					$tweet_found = true;
 
 					// Iterate over tweets.
-					foreach( $rss_feed->channel->item as $tweet ) {
+					foreach( $rss_feed->status as $tweet ) {
 
-						// Twitter feeds begin with the username, "e.g. User name: Blah"
-						// so we need to strip that from the front of our tweet
-						$tweet_desc = substr( $tweet->description, strpos( $tweet->description, ':' ) + 2 );
-						$tweet_desc = htmlspecialchars( $tweet_desc );
+						$tweet_desc = $tweet->text;
 						$tweet_first_char = substr( $tweet_desc, 0, 1 );
 
 						// If we are not gnoring replies, or tweet is not a reply, process it
@@ -847,8 +844,8 @@ if ( !function_exists('ss_framework_twitter_feed') ) {
 							$tweet_desc = preg_replace( '/(^|[\n\s])#([^\s"\t\n\r<:]*)/is', '$1<a href="http://twitter.com/search?q=%23$2">#$2</a>', $tweet_desc );
 
 							// Convert Tweet display time to a UNIX timestamp. Twitter timestamps are in UTC/GMT time
-							$tweet_time = strtotime( $tweet->pubDate );
-							
+							$tweet_time = strtotime( $tweet->created_at );
+
 							// Current UNIX timestamp.
 							$current_time = time();
 							$time_diff = abs( $current_time - $tweet_time );
@@ -922,15 +919,11 @@ if ( !function_exists('ss_framework_twitter_feed') ) {
 									break;
 
 							}
-								
+
 							// Render the tweet
-							$tweets .= "<li>$tweet_desc<span class='date'><a href='$tweet->link' target='_blank'>($display_time)</a></span></li>\n";
+							$tweets .= "<li>$tweet_desc<span class='date'><a href='https://twitter.com/$username/status/$tweet->id' target='_blank'>($display_time)</a></span></li>\n";
 
 						}
-		 
-						// If we have processed enough tweets, stop
-						if ($tweets_count >= $tweet_count)
-							break;
 
 					}
 

@@ -104,6 +104,9 @@ a, a > * {
     font-family:"Open Sans", "Helvetica Neue", Arial, sans-serif;
     font-size:11px;
 }
+.entry-meta li {
+	vertical-align: top;
+}
 
     /* ---------------------------------------------------------------------- */
     /*	Content > Post Carousel
