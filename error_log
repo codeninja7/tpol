@@ -1,0 +1,20 @@
+[09-Sep-2012 03:39:44] PHP Parse error:  syntax error, unexpected T_FUNCTION in /home1/etsueico/public_html/git/tpol/wp-content/themes/priceforlife/functions/price-of-life.php on line 6
+[09-Sep-2012 04:12:15] PHP Parse error:  syntax error, unexpected T_FUNCTION in /home1/etsueico/public_html/git/tpol/wp-content/themes/priceforlife/functions/price-of-life.php on line 6
+[09-Sep-2012 04:18:50] PHP Parse error:  syntax error, unexpected T_FUNCTION in /home1/etsueico/public_html/git/tpol/wp-content/themes/priceforlife/functions/price-of-life.php on line 6
+[09-Sep-2012 04:23:26] PHP Parse error:  syntax error, unexpected T_FUNCTION in /home1/etsueico/public_html/git/tpol/wp-content/themes/priceforlife/functions/price-of-life.php on line 6
+[09-Sep-2012 04:24:06] PHP Parse error:  syntax error, unexpected T_FUNCTION in /home1/etsueico/public_html/git/tpol/wp-content/themes/priceforlife/functions/price-of-life.php on line 6
+[09-Sep-2012 04:24:42] PHP Parse error:  syntax error, unexpected T_FUNCTION in /home1/etsueico/public_html/git/tpol/wp-content/themes/priceforlife/functions/price-of-life.php on line 6
+[09-Sep-2012 04:31:59] PHP Parse error:  syntax error, unexpected T_FUNCTION in /home1/etsueico/public_html/git/tpol/wp-content/themes/priceforlife/functions/price-of-life.php on line 6
+[09-Sep-2012 04:34:07] PHP Parse error:  syntax error, unexpected T_FUNCTION in /home1/etsueico/public_html/git/tpol/wp-content/themes/priceforlife/functions/price-of-life.php on line 6
+[09-Sep-2012 14:01:17] PHP Parse error:  syntax error, unexpected T_FUNCTION in /home1/etsueico/public_html/git/tpol/wp-content/themes/priceforlife/functions/price-of-life.php on line 6
+[09-Sep-2012 14:01:18] PHP Parse error:  syntax error, unexpected T_FUNCTION in /home1/etsueico/public_html/git/tpol/wp-content/themes/priceforlife/functions/price-of-life.php on line 6
+[09-Sep-2012 14:05:52] PHP Parse error:  syntax error, unexpected T_FUNCTION in /home1/etsueico/public_html/git/tpol/wp-content/themes/priceforlife/functions/price-of-life.php on line 6
+[09-Sep-2012 14:05:53] PHP Parse error:  syntax error, unexpected T_FUNCTION in /home1/etsueico/public_html/git/tpol/wp-content/themes/priceforlife/functions/price-of-life.php on line 6
+[09-Sep-2012 14:06:11] PHP Parse error:  syntax error, unexpected T_FUNCTION in /home1/etsueico/public_html/git/tpol/wp-content/themes/priceforlife/functions/price-of-life.php on line 6
+[09-Sep-2012 14:07:32] PHP Parse error:  syntax error, unexpected T_FUNCTION in /home1/etsueico/public_html/git/tpol/wp-content/themes/priceforlife/functions/price-of-life.php on line 6
+[09-Sep-2012 14:07:35] PHP Parse error:  syntax error, unexpected T_FUNCTION in /home1/etsueico/public_html/git/tpol/wp-content/themes/priceforlife/functions/price-of-life.php on line 6
+[09-Sep-2012 14:08:53] PHP Parse error:  syntax error, unexpected T_FUNCTION in /home1/etsueico/public_html/git/tpol/wp-content/themes/priceforlife/functions/price-of-life.php on line 6
+[09-Sep-2012 14:08:56] PHP Parse error:  syntax error, unexpected T_FUNCTION in /home1/etsueico/public_html/git/tpol/wp-content/themes/priceforlife/functions/price-of-life.php on line 6
+[09-Sep-2012 14:09:00] PHP Parse error:  syntax error, unexpected T_FUNCTION in /home1/etsueico/public_html/git/tpol/wp-content/themes/priceforlife/functions/price-of-life.php on line 6
+[13-Dec-2012 18:34:01] PHP Warning:  Missing argument 2 for wpdb::prepare(), called in /home1/etsueico/public_html/git/tpol/wp-content/plugins/olimometer/olimometer.php on line 1269 and defined in /home1/etsueico/public_html/git/tpol/wp-includes/wp-db.php on line 990
+[13-Dec-2012 18:34:02] PHP Warning:  Missing argument 2 for wpdb::prepare(), called in /home1/etsueico/public_html/git/tpol/wp-content/plugins/olimometer/olimometer.php on line 1269 and defined in /home1/etsueico/public_html/git/tpol/wp-includes/wp-db.php on line 990

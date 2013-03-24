@@ -48,7 +48,7 @@ if ( ! function_exists( 'add_action' ) ) {
 								'#slugdiv,#edit-slug-box',
 								'#misc-publishing-actions',
 								'#commentstatusdiv',
-								'#editor-toolbar #edButtonHTML, #quicktags, #content-html'
+								'#editor-toolbar #edButtonHTML, #quicktags, #content-html, .wp-switch-editor.switch-html'
 							);
 							
 							$post_type = 'post';
