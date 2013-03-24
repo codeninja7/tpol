@@ -2,6 +2,11 @@
 /*	Media Queries
 /* ---------------------------------------------------------------------- */
 
+.events-single #main .entry-meta li,
+.events-list #main .entry-meta li {
+	color:#414141;
+}
+
 @media all and (min-width: 960px) {
 
 	.events-list #content img {
@@ -388,4 +393,90 @@ table.tribe-events-calendar, .tribe-events-calendar td {
 }
 #event-list-calendar a {
 	display:block;
+}
+
+#googlemaps img {
+	max-width: 100%;
+}
+
+/*===== Sidebar Calendar Widget =====*/
+.widget #calendar_wrap {
+	width:100%;
+}
+table.tribe-events-calendar-widget {
+	width:100%;
+	table-layout:fixed;
+	margin-top:0;
+}
+.events_calendar_widget h4.cal-header {
+	margin:12px 0 0;
+}
+h4 .tribe-view-all-events {
+	float:right;
+}
+.tribe-events-calendar-widget th {
+	font-size:10px;
+	background-color:#e8e8e8;
+	color:#555;
+	width:14.28%;
+}
+.tribe-events-calendar-widget td {
+	height:auto !important;
+	text-align:center;
+}
+.tribe-events-calendar-widget td .tribe-events-event {
+	padding:6px 0;
+	background-color:#f9f9f9;
+}
+.tribe-events-calendar-widget .daynum, .tribe-events-calendar-widget td a {
+	font-size:10px;
+}
+.tribe-events-calendar-widget td a.tribe-events-mini-has-event {
+	color:#06c;
+	cursor:default;
+}
+.tribe-events-calendar-widget .tribe-events-tooltip {
+	width:100px;
+	left:0;
+	text-align:left;
+	padding:5px 10px;
+}
+.tribe-events-calendar-widget .tribe-events-right .tribe-events-tooltip {
+	right:0;
+}
+.tribe-events-calendar-widget .tribe-events-tooltip .tribe-events-arrow {
+	left:4px;
+}
+.tribe-events-calendar-widget .tribe-events-right .tribe-events-tooltip .tribe-events-arrow {
+	left:auto;
+	right:3px;
+}
+.tribe-events-calendar-widget h5 a {
+	font-size:11px;
+}
+
+
+.eventsListWidget ul {
+	margin-bottom:10px;
+}
+.eventsListWidget.widget li {
+	margin-bottom: 7px;
+	padding-bottom: 5px;
+}
+.eventsListWidget .event a {
+	padding:0;
+}
+.eventsListWidget .when {
+	font-style:italic;
+}
+.eventsListWidget .when b {
+	font-weight:400;
+	font-style:normal;
+	display:inline-block;
+	width:50px;
+}
+.eventsListWidget .dig-in {
+	font-weight: 600;
+	font-family: "Open Sans";
+	font-size: 12px;
 }
