@@ -217,6 +217,10 @@ a, a > * {
     font-weight:300;
 }
 
+#footer .widget.ss-contact-info {
+	border-bottom:0;
+}
+
 .contact-info { font-size:10px;font-weight:400; }
 .contact-info .address,
 .contact-info .phone,
