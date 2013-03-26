@@ -8,13 +8,21 @@
 class Facebook_Comments {
 
 	/**
-	 * Hide comments-related content via CSS
+	 * Limit the strings allowed as an element name wrapping comments retrieved from Facebook servers
 	 *
-	 * @since 1.1
-	 * @uses wp_enqueue_style
+	 * @since 1.3
+	 * @var array
 	 */
-	public static function css_hide_comments() {
-		wp_enqueue_style( 'fb_hide_wp_comments', plugins_url( 'static/css/hide-wp-comments.min.css', dirname(__FILE__) ), array(), '1.1' );
+	public static $allowed_comment_wrapper_elements = array( 'noscript' => true, 'div' => true, 'section' => true );
+
+	/**
+	 * Override default comments template with a Facebook-specific comments template
+	 *
+	 * @since 1.3
+	 * @return string file path to plugin comments template PHP
+	 */
+	public static function comments_template() {
+		return dirname( __FILE__ ) . '/comments.php';
 	}
 
 	/**
@@ -37,24 +45,6 @@ class Facebook_Comments {
 	}
 
 	/**
-	 * Override returned comments if Comments Box handles comments for the post type
-	 *
-	 * @since 1.1.7
-	 * @see comments_template()
-	 * @param array $comments comments for a post
-	 * @param int $post_id post identifier
-	 * @return array to be stored in WP_Query
-	 */
-	public static function comments_array_filter( $comments, $post_id = null ) {
-		if ( ! empty( $comments ) && $post_id ) {
-			$_post = get_post( $post_id );
-			if ( $_post && self::comments_enabled_for_post_type( $_post ) )
-				return array();
-		}
-		return $comments;
-	}
-
-	/**
 	 * Turn on comments open if Comments Box enabled for the post type
 	 * A Comment Box always solicits new comments
 	 *
@@ -74,22 +64,20 @@ class Facebook_Comments {
 	}
 
 	/**
-	 * Override post->comment_count returned value
-	 * Short-circuit special template behavior for comment count = 0
-	 * Prevents linking to #respond anchor which leads nowhere
+	 * Kill attempts to comment on a post managed by Facebook Comments Box
 	 *
-	 * @see get_comments_number()
-	 * @param int $count comment count
-	 * @param int $post_id post identifier
-	 * @return int comment count
+	 * @since 1.3.1
+	 * @param int post_id post identifer
 	 */
-	public static function get_comments_number_filter( $count, $post_id = null ) {
-		if ( $post_id ) {
-			$_post = get_post( $post_id );
-			if ( $_post && self::comments_enabled_for_post_type( $_post ) )
-				return -1;
+	public static function pre_comment_on_post( $post_id ) {
+		if ( ! $post_id )
+			return;
+		$_post = get_post( $post_id );
+		if ( $_post && self::comments_enabled_for_post_type( $_post ) ) {
+			// match comments closed message and behavior
+			do_action( 'comment_closed', $post_id );
+			wp_die( __('Sorry, comments are closed for this item.') );
 		}
-		return $count;
 	}
 
 	/**
@@ -377,7 +365,7 @@ class Facebook_Comments {
 
 		$html = trim( $html );
 
-		if ( $html && is_string( $wrapper_element ) && in_array( $wrapper_element, array( 'noscript', 'div', 'section' ), true ) )
+		if ( $html && is_string( $wrapper_element ) && isset( self::$allowed_comment_wrapper_elements[$wrapper_element] ) )
 			return '<' . $wrapper_element . '>' . $html . '</' . $wrapper_element . '>';
 
 		return $html;
@@ -401,7 +389,12 @@ class Facebook_Comments {
 
 		$comments_box = Facebook_Comments_Box::fromArray( $options );
 		if ( $comments_box ) {
-			$comments_jssdk_div = $comments_box->asHTML( array( 'class' => array( 'fb-social-plugin' ) ) );
+			$comments_box_attributes = array( 'class' => array( 'fb-social-plugin' ) );
+			$wp_comment_form_args = apply_filters( 'comment_form_defaults', array( 'source' => 'facebook', 'id_form' => 'commentform' ) );
+			if ( is_array( $wp_comment_form_args ) && isset( $wp_comment_form_args['id_form'] ) )
+				$comments_box_attributes['id'] = $wp_comment_form_args['id_form'];
+			unset( $wp_comment_form_args );
+			$comments_jssdk_div = $comments_box->asHTML( $comments_box_attributes );
 			if ( $comments_jssdk_div )
 				return "\n" . $comments_jssdk_div . "\n";
 		}
@@ -431,17 +424,23 @@ class Facebook_Comments {
 	}
 
 	/**
-	 * Display comments and comments box after main post content
+	 * Display comments and comments box
+	 * Existing Facebook comments are wrapped in a noscript for search engine indexing and styling
 	 *
-	 * @since 1.1
-	 * @param string $content post content
-	 * @return string post content, possibly with noscript comments content appended and/or comments box markup to be interpreted by the Facebook JavaScript SDK
+	 * @since 1.3
+	 * @return string noscript Facebook comments content and/or Comments Box markup to be interpreted by the Facebook JavaScript SDK
 	 */
-	public static function the_content_comments_box( $content ) {
+	public static function comments_box() {
 		global $post;
 
-		if ( ! isset( $post ) )
-			return;
+		$content = '';
+
+		if ( ! ( isset( $post ) && isset( $post->ID ) ) )
+			return $content;
+
+		$post_id = absint( $post->ID );
+		if ( ! $post_id )
+			return $content;
 
 		$options = get_option( 'facebook_comments' );
 
@@ -449,21 +448,26 @@ class Facebook_Comments {
 			return $content;
 
 		// closed posts can have comments from their previous open state
-		// display noscript version of these comments
-		$comments_markup = self::comments_markup( 'noscript' );
-		if ( $comments_markup )
-			$content .= "\n" . $comments_markup . "\n";
-		else
-			remove_filter( 'comments_open', '__return_true' ); // allow closed comments if no previous comments to display
-		unset( $comments_markup );
+		// display noscript version of these comments, or display on page if filter override exists
+		$comments_wrapper = apply_filters( 'facebook_comments_wrapper', 'noscript', $post_id );
+
+		if ( $comments_wrapper && isset( self::$allowed_comment_wrapper_elements[$comments_wrapper] ) ) {
+			$comments_markup = self::comments_markup( 'noscript' );
+			if ( $comments_markup )
+				$content .= $comments_markup;
+			else
+				remove_filter( 'comments_open', '__return_true' ); // allow closed comments if no previous comments to display
+			unset( $comments_markup );
+		}
+		unset( $comments_wrapper );
 
 		// no option via JS SDK to display comments yet not accept new comments
 		// only display JS SDK version of comments box display if we would like more comments
-		if ( comments_open( $post->ID ) ) {
+		if ( comments_open( $post_id ) ) {
 			$url = apply_filters( 'facebook_rel_canonical', get_permalink() );
 			if ( $url ) // false could happen. let JS SDK handle compatibility mode
 				$options['href'] = $url;
-			$content .= "\n" . self::js_sdk_markup( $options ) . "\n";
+			$content .= self::js_sdk_markup( $options );
 		}
 
 		return $content;

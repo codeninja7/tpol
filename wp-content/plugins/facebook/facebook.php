@@ -1,15 +1,15 @@
 <?php
 /**
  * @package Facebook
- * @version 1.2.3
+ * @version 1.3.1
  */
 /*
 Plugin Name: Facebook
 Plugin URI: http://wordpress.org/extend/plugins/facebook/
-Description: Facebook for WordPress. Make your site deeply social in just a couple of clicks.
+Description: Add Facebook social plugins and the ability to publish new posts to a Facebook Timeline or Facebook Page. Official Facebook plugin.
 Author: Facebook
 Author URI: https://developers.facebook.com/wordpress/
-Version: 1.2.3
+Version: 1.3.1
 License: GPL2
 License URI: license.txt
 Domain Path: /languages/
@@ -28,7 +28,7 @@ class Facebook_Loader {
 	 * @since 1.1
 	 * @var string
 	 */
-	const VERSION = '1.2.3';
+	const VERSION = '1.3.1';
 
 	/**
 	 * Default Facebook locale
@@ -99,6 +99,7 @@ class Facebook_Loader {
 			$this->admin_init();
 		} else {
 			add_action( 'wp_enqueue_scripts', array( &$this, 'register_js_sdk' ), 1 );
+			add_action( 'init', array( &$this, 'public_early_init' ), 1, 0 );
 			add_action( 'wp', array( &$this, 'public_init' ) );
 		}
 	}
@@ -136,10 +137,12 @@ class Facebook_Loader {
 
 		$args = array(
 			'channelUrl' => plugins_url( 'channel.php', __FILE__ ),
-			'status' => true,
-			'cookie' => true,
 			'xfbml' => true
 		);
+		if ( is_admin() ) {
+			$args['status'] = true;
+			$args['cookie'] = true;
+		}
 
 		// appId optional
 		if ( ! empty( $this->credentials['app_id'] ) )
@@ -160,7 +163,7 @@ class Facebook_Loader {
 	 * @link http://dev.chromium.org/developers/design-documents/dns-prefetching Chromium prefetch behavior
 	 * @link https://developer.mozilla.org/en-US/docs/Controlling_DNS_prefetching Firefox prefetch behavior
 	 */
-	public static function dns_prefetch_js_sdk(){
+	public static function dns_prefetch_js_sdk() {
 		echo '<link rel="dns-prefetch" href="//connect.facebook.net" />' . "\n";
 	}
 
@@ -264,6 +267,22 @@ class Facebook_Loader {
 	}
 
 	/**
+	 * Add overrides early in the WordPress loading process for front-end views
+	 *
+	 * @since 1.3.1
+	 */
+	public function public_early_init() {
+		// add possible comments submission override if Comments Box enabled for one or more post types
+		if ( get_option( 'facebook_comments_enabled' ) ) {
+			if ( ! class_exists( 'Facebook_Comments' ) )
+				require_once( $this->plugin_directory . 'social-plugins/class-facebook-comments.php' );
+
+			// cutoff new comment attempts for post types under management by Comments Box
+			add_action( 'pre_comment_on_post', array( 'Facebook_Comments', 'pre_comment_on_post' ), 1, 1 );
+		}
+	}
+
+	/**
 	 * Intialize the public, front end views
 	 *
 	 * @since 1.1
@@ -287,12 +306,10 @@ class Facebook_Loader {
 			if ( ! class_exists( 'Facebook_Comments' ) )
 				require_once( $this->plugin_directory . 'social-plugins/class-facebook-comments.php' );
 
-			add_filter( 'comments_array', array( 'Facebook_Comments', 'comments_array_filter' ), 10, 2 );
+			// treat as if comments are open for post types with comments under management by Comments Box
 			add_filter( 'comments_open', array( 'Facebook_Comments', 'comments_open_filter' ), 10, 2 );
 
-			// override comment count to a garbage number
-			add_filter( 'get_comments_number', array( 'Facebook_Comments', 'get_comments_number_filter' ), 10, 2 );
-			// display comments number if used in template
+			// display comments number XFBML for JS SDK interpretation if used in template
 			add_filter( 'comments_number', array( 'Facebook_Comments', 'comments_number_filter' ), 10, 2 );
 		}
 
@@ -335,8 +352,7 @@ class Facebook_Loader {
 				if ( ! class_exists( 'Facebook_Comments' ) )
 					require_once( $this->plugin_directory . 'social-plugins/class-facebook-comments.php' );
 
-				add_filter( 'the_content', array( 'Facebook_Comments', 'the_content_comments_box' ), $priority );
-				add_action( 'wp_enqueue_scripts', array( 'Facebook_Comments', 'css_hide_comments' ), 0 );
+				add_filter( 'comments_template', array( 'Facebook_Comments', 'comments_template' ) );
 			}
 		}
 
@@ -497,6 +513,16 @@ class Facebook_Loader {
 				require_once( dirname(__FILE__) . '/extras/google-analytics.php' );
 			add_filter( 'yoast-ga-push-after-pageview', array( 'Facebook_Google_Analytics', 'gaq_filter' ) );
 		}
+	}
+
+	/**
+	 * Useful for blanking a string filter
+	 *
+	 * @since 1.3
+	 * @return string empty string
+	 */
+	public static function __return_empty_string() {
+		return '';
 	}
 }
 
