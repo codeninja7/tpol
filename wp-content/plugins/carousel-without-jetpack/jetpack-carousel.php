@@ -211,7 +211,7 @@ class No_Jetpack_Carousel {
 				$comments_opened,
 				esc_attr( $img_meta ),
 				esc_attr( $attachment_title ),
-				esc_attr( $attachment_desc ),
+				esc_attr( trim($attachment_desc) ),
 				esc_attr( $medium_file ),
 				esc_attr( $large_file )
 			),
