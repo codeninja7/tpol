@@ -149,9 +149,9 @@ jQuery(document).ready(function($) {
 					'width' : leftWidth
 				})
 				.append(titleAndDescription)
-				.append(commentForm)
-				.append(comments)
-				.append(commentsLoading);
+//				.append(commentForm)
+//				.append(comments)
+//				.append(commentsLoading);
 
 			fadeaway = $('<div></div>')
 				.addClass('jp-carousel-fadeaway');
